@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Types</title>
+    {{>common}}
+    <style>
+        td, th { padding: 0.2em 0.4em 0 0; }
+    </style>
+</head>
+<body>
+
+<h1>Types</h1>
+
+{{>navpartial}}
+
+<main>
+
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td><a href="/types/add" class="fa fa-plus small grey" title="add type"></a>
+    </tr>
+    {{#types}}
+    <tr id="{{id}}">
+        <td><a href="/types/{{type_id}}">{{topic}}</a></td>
+        <td><a href="/types/{{type_id}}/edit" class="fa fa-pencil small grey" title="edit type"></a>
+        <td><a href="/types/{{type_id}}/delete" class="fa fa-trash-o small grey" title="delete type"></a>
+    </tr>
+    {{/types}}
+</table>
+
+</main>
+
+</body>
+</html>

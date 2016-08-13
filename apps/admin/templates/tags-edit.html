@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Edit tag</title>
+    {{>common}}
+    <script>
+        $(document).ready(function() {
+            
+        });
+    </script>
+</head>
+<body>
+
+<h1>Edit tag</h1>
+
+{{>navpartial}}
+{{>errpartial}}
+
+<main>
+
+<form method="post">
+    <ul>
+        <li>
+            <label for="name">Name</label>
+            <input name="name" id="name" value="{{name}}" required autofocus>
+        </li>
+        <li>
+            <label></label>
+            <button type="submit" class="fa fa-check-square-o green" title="Update"></button>
+        </li>
+    </ul>
+</form>
+
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+{
+  "name": "koa-test-middleware",
+  "version": "1.0.0",
+  "description": "Koa Test Middleware with handlebars templates + RESTful API + MySQL",
+  "main": "app.js",
+  "scripts": {
+    "start": "forever --minUptime 1000 --spinSleepTime 1000 app.js",
+    "start-dev": "nodemon -e js,json,html app.js",
+    "test": "mocha test/admin.js test/api.js",
+    "lint": "eslint --ignore-pattern apps/api/apidoc .",
+    "apidoc": "apidoc -i apps/api -o apps/api/apidoc/apidoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangzj1992/koa-test-middleware.git"
+  },
+  "keywords": [
+    "koa"
+  ],
+  "author": "yangzj1992",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yangzj1992/koa-test-middleware/issues"
+  },
+  "homepage": "https://github.com/yangzj1992/koa-test-middleware#readme",
+  "dependencies": {
+    "basic-auth": "^1.0.3",
+    "bunyan": "^1.7.1",
+    "co": "^4.6.0",
+    "co-bcryptjs": "^0.2.0",
+    "co-child-process": "^0.0.3",
+    "co-fs": "^1.2.0",
+    "forever": "^0.15.1",
+    "js-yaml": "^3.5.3",
+    "koa": "^1.2.0",
+    "koa-body": "^1.4.0",
+    "koa-bunyan": "^0.0.2",
+    "koa-compose": "^2.4.0",
+    "koa-compress": "^1.0.9",
+    "koa-flash": "^1.0.0",
+    "koa-handlebars": "^0.5.7",
+    "koa-helmet": "^1.0.0",
+    "koa-passport": "^1.2.0",
+    "koa-request": "^1.0.0",
+    "koa-response-time": "^1.0.2",
+    "koa-router": "^5.4.0",
+    "koa-session": "^3.3.1",
+    "koa-static": "^2.0.0",
+    "markdown-it": "^6.0.0",
+    "mysql-co": "^0.0.4",
+    "passport-local": "^1.0.0",
+    "superagent": "^1.8.0-beta.2",
+    "xmlify": "^1.0.1"
+  },
+  "devDependencies": {
+    "apidoc": "^0.15.1",
+    "chai": "^3.5.0",
+    "cheerio": "^0.20.0",
+    "co-mocha": "^1.1.2",
+    "co-supertest": "^0.0.10",
+    "cz-conventional-changelog": "^1.1.7",
+    "eslint": "^2.3.0",
+    "marked": "^0.3.6",
+    "mocha": "^2.4.5",
+    "node-gyp": "^3.3.1",
+    "nodemon": "^1.9.1",
+    "npm-check": "^4.1.4",
+    "npm-check-updates": "^2.5.8",
+    "supertest": "^1.2.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true,
+      "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "curly": [
+        2,
+        "multi-line"
+      ],
+      "indent": [
+        2,
+        4,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "key-spacing": [
+        1,
+        {
+          "align": "value"
+        }
+      ],
+      "no-console": 1,
+      "no-const-assign": 2,
+      "no-redeclare": 1,
+      "no-shadow": 1,
+      "no-unused-vars": [
+        1,
+        {
+          "vars": "all",
+          "args": "after-used"
+        }
+      ],
+      "no-var": 2,
+      "object-curly-spacing": [
+        2,
+        "always"
+      ],
+      "prefer-const": 2,
+      "quotes": [
+        2,
+        "single",
+        "avoid-escape"
+      ],
+      "semi": [
+        1,
+        "always"
+      ],
+      "strict": [
+        2,
+        "global"
+      ]
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

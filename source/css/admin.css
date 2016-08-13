@@ -1,0 +1,32 @@
+a, a:visited { color: #660000; }
+a.grey { color: #999999; }
+.green { color: #006600; }
+.red   { color: #660000; }
+.preview .line{
+  margin-top: 20px;
+}
+.preview textarea, .preview .text_pre {
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 5px;
+  height: 400px;
+  min-width: 49%;
+  overflow-y: scroll;
+}
+.preview .text_pre{
+  
+}
+.preview textarea {
+  border: none;
+  border-right: 1px solid #ccc;
+  resize: none;
+  outline: none;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  font-family: 'Monaco', courier, monospace;
+  padding: 5px;
+}

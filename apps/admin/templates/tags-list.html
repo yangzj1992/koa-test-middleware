@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Tags</title>
+    {{>common}}
+    <style>
+        td, th { padding: 0.2em 0.4em 0 0; }
+    </style>
+</head>
+<body>
+
+<h1>Tags</h1>
+
+{{>navpartial}}
+
+<main>
+
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td><a href="/tags/add" class="fa fa-plus small grey" title="add tag"></a>
+    </tr>
+    {{#tags}}
+    <tr id="{{id}}">
+        <td><a href="/tags/{{tag_id}}">{{name}}</a></td>
+        <td><a href="/tags/{{tag_id}}/edit" class="fa fa-pencil small grey" title="edit tag"></a>
+        <td><a href="/tags/{{tag_id}}/delete" class="fa fa-trash-o small grey" title="delete tag"></a>
+    </tr>
+    {{/tags}}
+</table>
+
+</main>
+
+</body>
+</html>

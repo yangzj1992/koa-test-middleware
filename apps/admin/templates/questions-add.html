@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Add Question</title>
+    {{>common}}
+</head>
+<body>
+
+<h1>Add Question</h1>
+
+{{>navpartial}}
+{{>errpartial}}
+
+<main>
+
+<form method="post">
+    <ul>
+        <li>
+            <label for="title">Question Title<span class="red-font">*</span></label>
+            <input name="title" id="question_title" value="{{title}}" autofocus>
+        </li>
+        <li>
+            <label for="use_case">Question Use Case</label>
+            <input name="use_case" id="question_use_case" value="{{use_case}}">
+        </li>
+        <li>    
+            <label for="description">Question Description</label>
+            <input name="description" id="question_description" value="{{description}}">
+        </li>
+        <li>    
+            <label for="difficulty">Question Difficulty<span class="red-font">*</span></label>
+            <input name="difficulty" id="question_difficulty" value="{{difficulty}}" required>
+        </li>
+        <li>
+            <label></label>
+            <button type="submit" class="fa fa-check-square-o green" title="Add"></button>
+        </li>
+    </ul>
+</form>
+
+</main>
+
+</body>
+</html>

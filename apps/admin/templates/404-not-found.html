@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>404 NOT FOUND!</title>
+    {{>common}}
+</head>
+<body>
+
+<h1>:(</h1>
+
+{{>navpartial}}
+
+<main>
+
+{{#if msg}}
+<p>{{msg}}.</p>
+{{else}}
+<p>Couldn’t find that one!...</p>
+{{/if}}
+
+{{#if e}}
+<pre class="small grey">{{e.stack}}.</pre>
+{{/if}}
+
+</main>
+
+</body>
+</html>

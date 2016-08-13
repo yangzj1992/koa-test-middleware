@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Logs: {{logfile}}</title>
+    {{>common}}
+    <style>
+        pre  {
+            font: 80% 'Lucida Console', Consolas, Monaco, 'Andale Mono', monospace;
+            line-height: 1.2;
+            overflow: visible;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Logs: {{logfile}}</h1>
+
+{{>navpartial}}
+
+<main>
+
+<pre>{{bunyan}}</pre>
+
+</main>
+
+</body>
+</html>

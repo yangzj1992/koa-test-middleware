@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Add type</title>
+    {{>common}}
+</head>
+<body>
+
+<h1>Add type</h1>
+
+{{>navpartial}}
+{{>errpartial}}
+
+<main>
+
+<form method="post">
+    <ul>
+        <li>
+            <label for="Name">Name</label>
+            <input name="Name" id="Name" value="{{Name}}" required autofocus>
+        </li>
+        <li>
+            <label></label>
+            <button type="submit" class="fa fa-check-square-o green" title="Add"></button>
+        </li>
+    </ul>
+</form>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Edit Question</title>
+    {{>common}}
+</head>
+<style type="text/css">
+    .tags{
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+<h1>Edit question</h1>
+
+{{>navpartial}}
+{{>errpartial}}
+
+<form class="form-horizontal" method="post">
+
+    <ul>
+        <li>
+            <label for="title">Question Title<span class="red-font">*</span></label>
+            <input name="title" id="question_title" value="{{title}}" autofocus>
+        </li>
+        <li>
+            <label for="use_case">Question Use Case</label>
+            <input name="use_case" id="question_use_case" value="{{use_case}}">
+        </li>
+        <li>    
+            <label for="description">Question Description</label>
+            <input name="description" id="question_description" value="{{description}}" required>
+        </li>
+        <li>    
+            <label for="difficulty">Question Difficulty<span class="red-font">*</span></label>
+            <input name="difficulty" id="question_difficulty" value="{{difficulty}}" required>
+        </li>
+        <li>
+            <label></label>
+            <button type="submit" class="fa fa-check-square-o green" title="Update"></button>
+        </li>
+    </ul>
+</form>
+
+<h2>Answer</h2>
+
+<div class="preview">
+    <div class="line">
+        <label for="answer_des">Answer Description</label>
+        <div class="answer_des">
+            <textarea name="answer_des" class="hide" id="answer_des_none"></textarea>
+            {{#questionOfAnswer}}
+            <textarea name="answer_des" id="answer_des">{{answer_des}}</textarea>
+            {{/questionOfAnswer}}
+            <div class="answer_des_preview text_pre"></div>
+        </div>
+    </div>
+    <div class="line">
+        <label for="answer">Answer<span class="red-font">*</span></label>
+        <div class="answer">
+            <textarea name="answer" class="hide" id="answer_none">{{answer}}</textarea>
+            {{#questionOfAnswer}}
+            <textarea name="answer" id="answer">{{answer}}</textarea>
+            {{/questionOfAnswer}}
+            <div class="answer_preview text_pre"></div>
+        </div>
+    </div>
+    <div class="line">
+        <button type="submit" id="answer_submit" class="fa fa-check-square-o green" title="Update"></button>
+    </div>
+</table>
+
+<h2>Types</h2>
+
+<table>
+    <tr>
+        <td>
+            <label for="question_type">Type</label>
+        </td>
+        <td>
+            <select class="choose-type">
+                {{#questionOfTypes}}
+                <option data="check" value="{{type_id}}">{{topic}}</option>
+                {{/questionOfTypes}}
+                {{#notquestionOfTypes}}
+                <option value="{{type_id}}">{{topic}}</option>
+                {{/notquestionOfTypes}}
+            </select>
+        </td>
+    </tr>
+</table>
+
+<h2>Tags</h2>
+
+<table class="tags">
+    <tr>
+        <td>
+            <select class="add-tag hide">
+                <option></option>
+                {{#notquestionOfTags}}
+                <option value="{{tag_id}}">{{name}}</option>
+                {{/notquestionOfTags}}
+            </select>
+        </td>
+        <td><button type="button" class="add-tag fa fa-plus small grey" title="add tag"></button></td>
+    </tr>
+    {{#questionOfTags}}
+    <tr id="{{question_tag_id}}">
+        <td>{{name}}</td>
+        <td><button type="button" data-tag="{{tag_id}}" value="{{question_tag_id}}" class="delete-tag fa fa-trash-o small grey" title="delete tag"></button></td>
+    </tr>
+    {{/questionOfTags}}
+    <tr class="hide tag_hide" id="-1">
+        <td>1</td>
+        <td><button type="button" data-tag="-1" value="-1" class="delete-tag fa fa-trash-o small grey" title="delete tag"></button></td>
+    </tr>
+</table>
+<script>
+    $(document).ready(function() {
+        if($('#answer').val()){
+            $('.answer_preview').html(marked($('#answer').val()));
+        }else{
+            $('#answer_none').removeClass('hide');
+        }
+
+        if($('#answer_des').val()){
+            $('.answer_des_preview').html(marked($('#answer_des').val()));
+        }else{
+            if($('#answer').val()){
+                $('.answer_des_preview').html(marked($('#answer_des').val()));
+            }else{
+                $('#answer_des_none').removeClass('hide');
+            }
+        }
+
+        $(document).on('keyup', '#answer', function() {
+            $('.answer_preview').html(marked($('#answer').val()))
+        });
+
+        $(document).on('keyup', '#answer_none', function() {
+            $('.answer_preview').html(marked($('#answer_none').val()))
+        });
+
+        $(document).on('keyup', '#answer_des', function() {
+            $('.answer_des_preview').html(marked($('#answer_des').val()))
+        });
+
+        $(document).on('keyup', '#answer_des_none', function() {
+            $('.answer_des_preview').html(marked($('#answer_des_none').val()))
+        });
+
+        if(!$('select.choose-type').find('option:first').attr('data')){
+            $('select.choose-type').find('option:first').before('<option selected="selected"></option>')
+        }
+
+        $(document).on('click', '#answer_submit', function() {
+            var url;
+            if($('#answer_none').hasClass('hide')){
+                var details = {
+                    question_id: {{question_id}},
+                    answer:  $('#answer').val(),
+                    answer_des:   $('#answer_des').val()
+                }
+                url = '/ajax/question-answers/'+{{question_id}}
+            }else{
+                if($('#answer_none').val().length == 0){
+                    alert('answer is required');
+                    return false;
+                }
+                var details = {
+                    question_id: {{question_id}},
+                    answer:  $('#answer_none').val(),
+                    answer_des:   $('#answer_des_none').val()
+                }
+                url = '/ajax/question-answers/';
+            }
+            $.ajax({
+                type:    'POST',
+                url:     url,
+                data:    details,
+                headers: { Accept: 'application/json' },
+                context: this,
+            })
+            .done(function(result) {
+                window.location.reload();
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            });
+        });
+
+        $(document).on('click', 'button.add-tag', function() {
+            $('select.add-tag').removeClass('hide').focus();
+        });
+
+        $(document).on('change', 'select.add-tag', function() {
+            if (!this.value) return;
+
+            var details = {
+                question_id: {{question_id}},
+                tag_id:   this.value,
+            }
+            $.ajax({
+                type:    'POST',
+                url:     '/ajax/question-tags',
+                data:    details,
+                headers: { Accept: 'application/json' },
+                context: this,
+            })
+            .done(function(result) {
+                // add new row, remove from select
+                var $thisRow = $(this).closest('tr');
+                var $newRow = $thisRow.next('.tag_hide').clone();
+                $newRow.prop('id', result.question_tag_id);
+                $newRow.find('td').eq(0).html($(this).find('option:selected').text());
+                $newRow.find('button').prop('value', result.question_tag_id);
+                $newRow.removeClass('hide tag_hide');
+                $thisRow.after($newRow);
+                $(`select.add-tag option[value=${this.value}]`).remove();
+                $('select.add-tag').addClass('hide');
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            });
+        });
+
+        $(document).on('click', 'button.delete-tag', function() {
+            $.ajax({
+                type:    'DELETE',
+                url:     '/ajax/question-tags/'+this.value,
+                headers: { Accept: 'application/json' },
+                context: this,
+            })
+            .done(function(result) {
+                // remove row, add to select
+                var tagId = $(this).closest('tr').attr('id');
+                $('#'+tagId).remove();
+                var name = $(this).closest('tr').find('td').eq(0).html();
+                $('select.add-tag').append(`<option value=${tagId}>${name}</option>option>`);
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            });
+        });
+
+        $(document).on('change', 'select.choose-type', function() {
+            var url;
+            if($(this).find('option:first').attr('data')){
+                if (!this.value) return;
+                var details = {
+                    question_id: {{question_id}},
+                    type_id:   this.value,
+                }
+                url = '/ajax/question-types/'+{{question_id}};
+            }else{
+                if (!this.value) return;
+                var details = {
+                    question_id: {{question_id}},
+                    type_id:   this.value,
+                }
+                url = '/ajax/question-types/';
+            }
+            $.ajax({
+                type:    'POST',
+                url:     url,
+                data:    details,
+                headers: { Accept: 'application/json' },
+                context: this,
+            })
+            .done(function(result) {
+                window.location.reload();
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            });
+        });
+
+        $(document).keyup(function(e) {
+            if (e.keyCode == 27) {
+                $('select.add-tag').addClass('hide');
+            }
+        });
+    });
+</script>
+</body>
+</html>

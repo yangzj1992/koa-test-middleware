@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Delete tag</title>
+    {{>common}}
+</head>
+<body>
+
+<h1>Delete tag</h1>
+
+{{>navpartial}}
+{{>errpartial}}
+
+{{#if _error}}<p class="error-msg">Error – {{_error}}</p>{{/if}}
+
+<main>
+
+<form method="post">
+    <p>Are you sure you want to delete {{Name}}?
+    <button type="submit">Delete</button>
+</form>
+
+</main>
+
+</body>
+</html>

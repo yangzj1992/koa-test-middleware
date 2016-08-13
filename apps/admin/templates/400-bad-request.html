@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>400 BAD REQUEST!</title>
+    {{>common}}
+</head>
+<body>
+
+<h1>:(</h1>
+
+{{>navpartial}}
+
+<main>
+
+<p>Sorry, can’t do that for you!... <span class="small grey">({{status}} {{message}}</span></p>
+
+{{#if e}}
+<pre class="small grey">{{e.stack}}.</pre>
+{{/if}}
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{{Firstname}} {{Lastname}}</title>
+    {{>common}}
+</head>
+<body>
+
+<h1>{{Title}}</h1>
+
+{{>navpartial}}
+
+<main>
+
+<h2>Details</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <td>{{Title}}</td>
+    </tr>
+    <tr>
+        <th>Question Use Case</th>
+        <td>{{Question_use_case}}</td>
+    </tr>
+    <tr>
+        <th>Question Description</th>
+        <td>{{Question_Description}}</td>
+    </tr>
+    <tr>
+        <th>Answer</th>
+        <td>{{Answer}}</td>
+    </tr>
+</table>
+
+{{#if tags}}
+<p>tags:
+    {{#tags}}
+    <a href="/tags/{{TagId}}">{{Name}}{{#unless @last}},{{/unless}}</a>
+    {{/tags}}
+</p>
+{{else}}
+<p>No tags.</p>
+{{/if}}
+
+
+{{#if types}}
+<p>types:
+    {{#types}}
+    <a href="/types/{{TypeId}}">{{Name}}{{#unless @last}},{{/unless}}</a>
+    {{/types}}
+</p>
+{{else}}
+<p>No types.</p>
+{{/if}}
+
+</main>
+
+</body>
+</html>
