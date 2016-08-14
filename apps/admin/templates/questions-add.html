@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Add Question</title>
-    {{>common}}
+  <title>Add Question</title>
+  {{>common}}
 </head>
 <body>
 
@@ -12,32 +12,47 @@
   <div class="row col-lg-8 col-lg-offset-2">
     <h1>Add Question</h1>
     {{>errpartial}}
-    <form method="post">
+    <form class="questions" method="post">
       <ul>
         <li>
           <label for="title">Question Title<span class="red-font">*</span></label>
-          <input name="title" id="question_title" value="{{title}}" autofocus>
+          <input name="title" class="form-control" id="question_title" value="{{title}}" required autofocus>
         </li>
         <li>
           <label for="use_case">Question Use Case</label>
-          <input name="use_case" id="question_use_case" value="{{use_case}}">
+          <div>
+            <textarea name="use_case" class="form-control" id="question_use_case">{{use_case}}</textarea>
+            <div class="use_case_preview text_pre"></div>
+          </div>
         </li>
         <li>    
           <label for="description">Question Description</label>
-          <input name="description" id="question_description" value="{{description}}">
+          <div>
+            <textarea name="description" class="form-control" id="question_description">{{description}}</textarea>
+            <div class="description_preview text_pre"></div>
+          </div>
         </li>
         <li>    
           <label for="difficulty">Question Difficulty<span class="red-font">*</span></label>
-          <input name="difficulty" id="question_difficulty" value="{{difficulty}}" required>
+          <input name="difficulty" class="form-control" id="question_difficulty" value="{{difficulty}}" required>
         </li>
         <li>
-          <label></label>
           <button type="submit" class="fa fa-check-square-o green" title="Add"></button>
         </li>
       </ul>
     </form>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $(document).on('keyup', '#question_use_case', function() {
+      $('.use_case_preview').html(marked($('#question_use_case').val()))
+    });
 
+    $(document).on('keyup', '#question_description', function() {
+      $('.description_preview').html(marked($('#question_description').val()))
+    });
+  });
+</script>
 </body>
 </html>

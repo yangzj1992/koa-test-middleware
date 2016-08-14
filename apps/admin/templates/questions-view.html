@@ -1,9 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>{{Firstname}} {{Lastname}}</title>
-    {{>common}}
+  <title>{{Firstname}} {{Lastname}}</title>
+  {{>common}}
 </head>
+<style type="text/css">
+  .des{
+    font-weight: bolder;
+    margin-right: 10px;
+    line-height: 2em;
+  }
+</style>
 <body>
 
 {{>navpartial}}
@@ -13,50 +20,56 @@
     <h1>{{Title}}</h1>
     <h2>Details</h2>
 
-    <table>
-      <tr>
-        <th>Title</th>
-        <td>{{title}}</td>
-      </tr>
-      <tr>
-        <th>Question Use Case</th>
-        <td>{{use_case}}</td>
-      </tr>
-      <tr>
-        <th>Question Description</th>
-        <td>{{description}}</td>
-      </tr>
-      <tr>
-        {{#answers}}
-        <th>Answer</th>
-        <td>{{answer}}</td>
-        {{/answers}}
-      </tr>
-    </table>
+    <div class="row">
+      <span class="des">Title</span>
+      <span>{{title}}</span>
+    </div>
+    <div class="row">
+      <span class="des">Question Use Case</span>
+      <div>{{use_case}}</div>
+    </div>
+    <div class="row">
+      <span class="des">Question Description</span>
+      <div>{{description}}</div>
+    </div>
+    <div class="row">
+      {{#answers}}
+      <span class="des">Answer</span>
+      <span id="answer">{{answer}}</span>
+      {{/answers}}
+    </div>
 
     {{#if tags}}
-    <p>tags:
-      {{#tags}}
-      <a href="/tags/{{TagId}}">{{name}}{{#unless @last}},{{/unless}}</a>
-      {{/tags}}
-    </p>
+    <div class="row">
+      <span class="des">tags:</span>
+      <span>
+        {{#tags}}
+        <a href="/tags/{{TagId}}">{{name}}{{#unless @last}},{{/unless}}</a>
+        {{/tags}}
+      </span>
+    </div>
     {{else}}
     <p>No tags.</p>
     {{/if}}
 
-
     {{#if types}}
-    <p>types:
-      {{#types}}
-      <a href="/types/{{TypeId}}">{{topic}}{{#unless @last}},{{/unless}}</a>
-      {{/types}}
-    </p>
+    <div class="row">
+      <span class="des">types:</span>
+      <span>
+        {{#types}}
+        <a href="/types/{{TypeId}}">{{topic}}{{#unless @last}},{{/unless}}</a>
+        {{/types}}
+      </span>
+    </div>
     {{else}}
     <p>No types.</p>
     {{/if}}
-
   </div>
 </div>
-
+<script type="text/javascript">
+  if($('#answer').text()){
+    $('#answer').html(marked($('#answer').text()));
+  }
+</script>
 </body>
 </html>

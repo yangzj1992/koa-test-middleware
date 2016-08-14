@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Edit Question</title>
-    {{>common}}
+  <title>Edit Question</title>
+  {{>common}}
 </head>
 <style type="text/css">
-    .tags{
-        margin-bottom: 20px;
-    }
+  .tags{
+    margin-bottom: 20px;
+  }
 </style>
 <body>
 
@@ -17,26 +17,31 @@
   <div class="row col-lg-8 col-lg-offset-2">
     <h1>Edit question</h1>
     {{>errpartial}}
-    <form class="form-horizontal" method="post">
+    <form class="questions form-horizontal" method="post">
       <ul>
         <li>
           <label for="title">Question Title<span class="red-font">*</span></label>
-          <input name="title" id="question_title" value="{{title}}" autofocus>
+          <input name="title" class="form-control" id="question_title" value="{{title}}" autofocus>
         </li>
         <li>
           <label for="use_case">Question Use Case</label>
-          <input name="use_case" id="question_use_case" value="{{use_case}}">
+          <div>
+            <textarea name="use_case" class="form-control" id="question_use_case">{{use_case}}</textarea>
+            <div class="use_case_preview text_pre"></div>
+          </div>
         </li>
         <li>    
           <label for="description">Question Description</label>
-          <input name="description" id="question_description" value="{{description}}" required>
+          <div>
+            <textarea name="description" class="form-control" id="question_description">{{description}}</textarea>
+            <div class="description_preview text_pre"></div>
+          </div>
         </li>
         <li>    
           <label for="difficulty">Question Difficulty<span class="red-font">*</span></label>
-          <input name="difficulty" id="question_difficulty" value="{{difficulty}}" required>
+          <input name="difficulty" class="form-control" id="question_difficulty" value="{{difficulty}}" required>
         </li>
         <li>
-          <label></label>
           <button type="submit" class="fa fa-check-square-o green" title="Update"></button>
         </li>
       </ul>
@@ -48,9 +53,9 @@
       <div class="line">
         <label for="answer_des">Answer Description</label>
         <div class="answer_des">
-          <textarea name="answer_des" class="hide" id="answer_des_none"></textarea>
+          <textarea name="answer_des" class="hide form-control" id="answer_des_none"></textarea>
           {{#questionOfAnswer}}
-          <textarea name="answer_des" id="answer_des">{{answer_des}}</textarea>
+          <textarea name="answer_des" class="form-control" id="answer_des">{{answer_des}}</textarea>
           {{/questionOfAnswer}}
           <div class="answer_des_preview text_pre"></div>
         </div>
@@ -58,9 +63,9 @@
       <div class="line">
         <label for="answer">Answer<span class="red-font">*</span></label>
         <div class="answer">
-          <textarea name="answer" class="hide" id="answer_none">{{answer}}</textarea>
+          <textarea name="answer" class="hide form-control" id="answer_none">{{answer}}</textarea>
           {{#questionOfAnswer}}
-          <textarea name="answer" id="answer">{{answer}}</textarea>
+          <textarea name="answer" class="form-control" id="answer">{{answer}}</textarea>
           {{/questionOfAnswer}}
           <div class="answer_preview text_pre"></div>
         </div>
@@ -71,25 +76,18 @@
     </table>
 
     <h2>Types</h2>
-
-    <table>
-      <tr>
-        <td>
-          <label for="question_type">Type</label>
-        </td>
-        <td>
-          <select class="choose-type">
-            {{#questionOfTypes}}
-            <option data="check" value="{{type_id}}">{{topic}}</option>
-            {{/questionOfTypes}}
-            {{#notquestionOfTypes}}
-            <option value="{{type_id}}">{{topic}}</option>
-            {{/notquestionOfTypes}}
-          </lect>
-        </td>
-      </tr>
-    </table>
-
+    <div class="line">
+      <label for="question_type">Type</label>
+      <select class="choose-type form-control">
+        {{#questionOfTypes}}
+        <option data="check" value="{{type_id}}">{{topic}}</option>
+        {{/questionOfTypes}}
+        {{#notquestionOfTypes}}
+        <option value="{{type_id}}">{{topic}}</option>
+        {{/notquestionOfTypes}}
+      </select>
+    </div>
+    
     <h2>Tags</h2>
 
     <table class="tags">
@@ -120,6 +118,14 @@
 
 <script>
   $(document).ready(function() {
+    if($('#question_use_case').val()){
+      $('.use_case_preview').html(marked($('#question_use_case').val()));
+    }
+
+    if($('#question_description').val()){
+      $('.description_preview').html(marked($('#question_description').val()));
+    }
+
     if($('#answer').val()){
       $('.answer_preview').html(marked($('#answer').val()));
     }else{
@@ -135,6 +141,14 @@
         $('#answer_des_none').removeClass('hide');
       }
     }
+
+    $(document).on('keyup', '#question_use_case', function() {
+      $('.use_case_preview').html(marked($('#question_use_case').val()))
+    });
+
+    $(document).on('keyup', '#question_description', function() {
+      $('.description_preview').html(marked($('#question_description').val()))
+    });
 
     $(document).on('keyup', '#answer', function() {
       $('.answer_preview').html(marked($('#answer').val()))

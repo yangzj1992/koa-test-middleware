@@ -21,7 +21,7 @@ label              { display: inline-block; font-style: italic; min-width: 12em;
 input[type=number] { text-align: right; }
 input + label      { font-style: normal; width: auto; } /* eg radio/checkbox labels */
 form ul            { list-style: none; padding: 0; }
-form li            { margin: 0.5em 1em; }
+form li            { margin: 0.5em 0; }
 
 /* nav */
 nav ul { list-style: none; padding: 0; }
