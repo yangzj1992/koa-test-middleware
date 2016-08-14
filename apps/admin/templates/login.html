@@ -1,53 +1,50 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Login</title>
-    {{>common}}
+  <title>Login</title>
+  {{>common}}
 </head>
 <body>
 
-<h1>Login</h1>
-
 {{>navpartial}}
 
-{{#if @koa.passport.user}}
-<p>You are currently logged in as {{@koa.passport.user.Firstname}} {{@koa.passport.user.Lastname}}
-    (with {{@koa.passport.user.Role}} privileges).</p>
-{{/if}}
+<div class="container-fluid">
+  <h1 class="col-lg-offset-2">Login</h1>
 
+  {{#if @koa.passport.user}}
+  <p class="col-lg-offset-2">You are currently logged in as {{@koa.passport.user.Firstname}} {{@koa.passport.user.Lastname}}
+      (with {{@koa.passport.user.Role}} privileges).</p>
+  {{/if}}
 
-<main>
-
-<form method="post">
+  <form class="col-lg-offset-2" method="post">
     <ul>
-        <li>
-            <label for="username">E-mail</label>
-            <input name="username" id="username" type="email" value="{{username}}" required autofocus>
-        </li>
-        <li>
-            <label for="password">Password</label>
-            <input name="password" id="password" type="password" required>
-        </li>
-        <li>
-            <label></label>
-            <input type="checkbox" name="remember-me" id="remember-me">
-            <label for="remember-me" class="grey">remember me</label>
-        </li>
-        <li>
-            <label></label>
-            <button type="submit" class="fa fa-check-square-o green" title="Login"></button>
-            {{#if @koa.flash.loginfailmsg}}<span class="error-msg">{{@koa.flash.loginfailmsg}}</span>{{/if}}
-        </li>
+      <li>
+        <label for="username">E-mail</label>
+        <input name="username" id="username" type="email" value="{{username}}" required autofocus>
+      </li>
+      <li>
+          <label for="password">Password</label>
+          <input name="password" id="password" type="password" required>
+      </li>
+      <li>
+          <label></label>
+          <input type="checkbox" name="remember-me" id="remember-me">
+          <label for="remember-me" class="grey">remember me</label>
+      </li>
+      <li>
+          <label></label>
+          <button type="submit" class="fa fa-check-square-o green" title="Login"></button>
+          {{#if @koa.flash.loginfailmsg}}<span class="error-msg">{{@koa.flash.loginfailmsg}}</span>{{/if}}
+      </li>
     </ul>
-</form>
+  </form>
 
-<p>Test logins:</p>
-<ul>
+  <p class="col-lg-offset-2" >Test logins:</p>
+  <ul class="col-lg-offset-2" >
     <li><i>guest@user.com/guest</i> for read-only access</li>
     <li><i>admin@user.com/admin</i> for full access</li>
-</ul>
-
-</main>
+  </ul>
+</div>
 
 </body>
 </html>

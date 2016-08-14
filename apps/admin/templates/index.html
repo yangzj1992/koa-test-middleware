@@ -6,21 +6,25 @@
 </head>
 <body>
 
-<h1>Koa Test Middleware</h1>
-
 {{>navpartial}}
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>Koa Test Middleware</h1>
 
-<p>This is the web-based  ‘admin’ section of the Koa Test Middleware
-    <a href="https://github.com/yangzj1992/koa-test-middleware">
-    github.com/yangzj1992/koa-test-middleware</a>.</p>
+    <p>This is the web-based  ‘admin’ section of the Koa Test Middleware
+        <a href="https://github.com/yangzj1992/koa-test-middleware">
+        github.com/yangzj1992/koa-test-middleware</a>.</p>
 
-{{#if @koa.passport.user}}
-<p><a href="/apidoc/">API documentation</a> is also available.</p>
-{{else}}
-<p>All admin functionality requires <a href="/login">logging in</a>.</p>
-{{/if}}
+    {{#if @koa.passport.user}}
+    <p><a href="/apidoc/">API documentation</a> is also available.</p>
+    {{else}}
+    <p>All admin functionality requires <a href="/login">logging in</a>.</p>
+    {{/if}}
 
-<p>For more details, see the <a href="http://www.{{@koa.domain}}">www</a> section.</p>
+    <p>For more details, see the <a href="http://www.{{@koa.domain}}">www</a> section.</p>
+
+  </div>
+</div>
 
 </body>
 </html>

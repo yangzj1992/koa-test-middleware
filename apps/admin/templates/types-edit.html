@@ -1,35 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Edit type</title>
-    {{>common}}
-    <script>
-        $(document).ready(function() {
-            
-        });
-    </script>
+  <title>Edit type</title>
+  {{>common}}
 </head>
 <body>
 
-<h1>Edit type</h1>
-
 {{>navpartial}}
-{{>errpartial}}
 
-<main>
-
-<form method="post">
-    <ul>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>Edit type</h1>
+    {{>errpartial}}
+    <form method="post">
+      <ul>
         <li>
-            <label for="topic">Topic</label>
-            <input name="topic" id="topic" value="{{topic}}" required autofocus>
+          <label for="topic">Topic</label>
+          <input name="topic" id="topic" value="{{topic}}" required autofocus>
         </li>
         <li>
-            <label></label>
-            <button type="submit" class="fa fa-check-square-o green" title="Update"></button>
+          <label></label>
+          <button type="submit" class="fa fa-check-square-o green" title="Update"></button>
         </li>
-    </ul>
-</form>
+      </ul>
+    </form>
+  </div>
+</div>
+
+
 
 
 </main>

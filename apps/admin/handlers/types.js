@@ -35,7 +35,7 @@ types.view = function*() {
     const type = yield Type.get(this.params.id);
     if (!type) this.throw(404, 'Type not found');
 
-    const type_sql = `select * from et_type where id = ?`;
+    const type_sql = `select * from et_type where type_id = ?`;
     const result = yield this.db.query(type_sql, this.params.id);
     const types = result[0];
 

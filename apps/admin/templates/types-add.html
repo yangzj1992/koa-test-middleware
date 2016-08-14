@@ -1,32 +1,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Add type</title>
-    {{>common}}
+  <title>Add type</title>
+  {{>common}}
 </head>
 <body>
 
-<h1>Add type</h1>
-
 {{>navpartial}}
-{{>errpartial}}
 
-<main>
-
-<form method="post">
-    <ul>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>Add type</h1>
+    {{>errpartial}}
+    <form method="post">
+      <ul>
         <li>
-            <label for="Name">Name</label>
-            <input name="Name" id="Name" value="{{Name}}" required autofocus>
+          <label for="topic">topic</label>
+          <input name="topic" id="topic" value="{{topic}}" required autofocus>
         </li>
         <li>
-            <label></label>
-            <button type="submit" class="fa fa-check-square-o green" title="Add"></button>
+          <label></label>
+          <button type="submit" class="fa fa-check-square-o green" title="Add"></button>
         </li>
-    </ul>
-</form>
-
-</main>
+      </ul>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

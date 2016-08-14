@@ -57,7 +57,8 @@ questions.view = function*() {
     context.tags = tags;
     context.types = types;
     context.questions = questions;
-    yield this.render('templates/question-view', context);
+    context.answers = answers;
+    yield this.render('templates/questions-view', context);
 };
 
 questions.add = function*() {

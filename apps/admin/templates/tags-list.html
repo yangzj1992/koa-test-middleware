@@ -9,28 +9,27 @@
 </head>
 <body>
 
-<h1>Tags</h1>
-
 {{>navpartial}}
 
-<main>
-
-<table>
-    <tr>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>Tags</h1>
+    <table>
+      <tr>
         <td></td>
         <td></td>
         <td><a href="/tags/add" class="fa fa-plus small grey" title="add tag"></a>
-    </tr>
-    {{#tags}}
-    <tr id="{{id}}">
+      </tr>
+      {{#tags}}
+      <tr id="{{id}}">
         <td><a href="/tags/{{tag_id}}">{{name}}</a></td>
         <td><a href="/tags/{{tag_id}}/edit" class="fa fa-pencil small grey" title="edit tag"></a>
         <td><a href="/tags/{{tag_id}}/delete" class="fa fa-trash-o small grey" title="delete tag"></a>
-    </tr>
-    {{/tags}}
-</table>
-
-</main>
+      </tr>
+      {{/tags}}
+    </table>
+  </div>
+</div>
 
 </body>
 </html>

@@ -34,7 +34,7 @@ tags.view = function*() {
     const tag = yield Tag.get(this.params.id);
     if (!tag) this.throw(404, 'Tag not found');
 
-    const tag_sql = `select * from et_tag where id = ?`;
+    const tag_sql = `select * from et_tag where tag_id = ?`;
     const result = yield this.db.query(tag_sql, this.params.id);
     const tags = result[0];
 

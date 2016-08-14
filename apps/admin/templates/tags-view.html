@@ -1,28 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>{{Name}}</title>
+    <title>{{name}}</title>
     {{>common}}
 </head>
 <body>
 
-<h1>{{Name}}</h1>
-
 {{>navpartial}}
 
-<main>
-
-<h2>Details</h2>
-
-<table>
-    <tr>
-        <th>Name:</th>
-        <td>{{Name}}</td>
-    </tr>
-</table>
-
-
-</main>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>{{name}}</h1>
+    <h2>Details</h2>
+    <table>
+        <tr>
+            <th>Name:</th>
+            <td>{{name}}</td>
+        </tr>
+    </table>
+  </div>
+</div>
 
 </body>
 </html>

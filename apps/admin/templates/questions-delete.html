@@ -6,19 +6,18 @@
 </head>
 <body>
 
-<h1>Delete Question</h1>
-
 {{>navpartial}}
-{{>errpartial}}
 
-<main>
-
-<form method="post">
-    <p>Are you sure you want to delete question {{title}}?
-    <button type="submit">Delete</button>
-</form>
-
-</main>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>Delete Question</h1>
+    {{>errpartial}}
+    <form method="post">
+        <p>Are you sure you want to delete question {{title}}?
+        <button type="submit">Delete</button>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

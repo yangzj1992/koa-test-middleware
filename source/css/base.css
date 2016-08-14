@@ -5,11 +5,8 @@ body {
     position: relative;
     color: #333333;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 92%;  /* adjust from default 16px (!) to 11pt (@ 96ppi) */
     line-height: 1.6;
-    max-width: 1024px;
     margin: 0 auto; /* equal l/r margins */
-    padding: 0 0.4em; /* small margin is good for phones */
 }
 
 /* links: underline on hover only (normally colour used to indicate links) */
@@ -19,7 +16,7 @@ a:hover { text-decoration: underline; }
 /* forms: useful defaults */
 form               { margin: 1em 0; }
 fieldset           { border-radius: 5px; }
-legend             { margin-left: 1em; padding: 0.5em; }
+legend             { padding: 0.5em; }
 label              { display: inline-block; font-style: italic; min-width: 12em; }
 input[type=number] { text-align: right; }
 input + label      { font-style: normal; width: auto; } /* eg radio/checkbox labels */
@@ -28,7 +25,6 @@ form li            { margin: 0.5em 1em; }
 
 /* nav */
 nav ul { list-style: none; padding: 0; }
-nav li { display: inline-block; margin: 0.5em 1em; }
 
 /* tables: useful defaults */
 tr     { vertical-align: baseline; }
@@ -37,13 +33,9 @@ th     { color: #666666; font-style: italic; font-weight: normal; text-align: le
 
 
 /* standard short-hand styles */
-.align-center   { text-align: center; }
-.align-left     { text-align: left; }
-.align-right    { text-align: right; }
-.align-justify  { text-align: justify; }
-.align-top      { vertical-align: top; }
-.align-middle   { vertical-align: middle; }
-.align-bottom   { vertical-align: bottom; }
+.tc   { text-align: center; }
+.tl     { text-align: left; }
+.tr    { text-align: right; }
 .border-none    { border: none; }
 .clear-floats   { clear:both; }
 .display-inline { display: inline; }
@@ -98,4 +90,22 @@ span.show        { display: inline; }
 /* no need for nav on printouts */
 @media print {
     nav { display: none; }
+}
+
+@media (min-width: 1200px) {
+  .container-fluid {
+    width: 1210px!important;
+  }
+}
+.navbar{
+    min-height: 50px;
+    position: relative;
+    line-height: 50px;
+}
+.navbar-nav{
+    margin-left: 16.6667%;
+}
+.navbar .brand{
+    margin-right: 40px;
+    font-weight: bolder;
 }

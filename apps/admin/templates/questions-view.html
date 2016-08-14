@@ -6,55 +6,57 @@
 </head>
 <body>
 
-<h1>{{Title}}</h1>
-
 {{>navpartial}}
 
-<main>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>{{Title}}</h1>
+    <h2>Details</h2>
 
-<h2>Details</h2>
-
-<table>
-    <tr>
+    <table>
+      <tr>
         <th>Title</th>
-        <td>{{Title}}</td>
-    </tr>
-    <tr>
+        <td>{{title}}</td>
+      </tr>
+      <tr>
         <th>Question Use Case</th>
-        <td>{{Question_use_case}}</td>
-    </tr>
-    <tr>
+        <td>{{use_case}}</td>
+      </tr>
+      <tr>
         <th>Question Description</th>
-        <td>{{Question_Description}}</td>
-    </tr>
-    <tr>
+        <td>{{description}}</td>
+      </tr>
+      <tr>
+        {{#answers}}
         <th>Answer</th>
-        <td>{{Answer}}</td>
-    </tr>
-</table>
+        <td>{{answer}}</td>
+        {{/answers}}
+      </tr>
+    </table>
 
-{{#if tags}}
-<p>tags:
-    {{#tags}}
-    <a href="/tags/{{TagId}}">{{Name}}{{#unless @last}},{{/unless}}</a>
-    {{/tags}}
-</p>
-{{else}}
-<p>No tags.</p>
-{{/if}}
+    {{#if tags}}
+    <p>tags:
+      {{#tags}}
+      <a href="/tags/{{TagId}}">{{name}}{{#unless @last}},{{/unless}}</a>
+      {{/tags}}
+    </p>
+    {{else}}
+    <p>No tags.</p>
+    {{/if}}
 
 
-{{#if types}}
-<p>types:
-    {{#types}}
-    <a href="/types/{{TypeId}}">{{Name}}{{#unless @last}},{{/unless}}</a>
-    {{/types}}
-</p>
-{{else}}
-<p>No types.</p>
-{{/if}}
+    {{#if types}}
+    <p>types:
+      {{#types}}
+      <a href="/types/{{TypeId}}">{{topic}}{{#unless @last}},{{/unless}}</a>
+      {{/types}}
+    </p>
+    {{else}}
+    <p>No types.</p>
+    {{/if}}
 
-</main>
+  </div>
+</div>
 
 </body>
 </html>

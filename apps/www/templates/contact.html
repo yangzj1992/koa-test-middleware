@@ -1,38 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Koa Test Middleware contact page</title>
-    {{>common}}
+  <title>Koa Test Middleware contact page</title>
+  {{>common}}
 </head>
 <body>
 
-<h1>Koa Test Middleware contact page</h1>
-
 {{>navpartial}}
 
-<main>
-
-{{#if email}}
-
-<p>Dear {{email}},</p>
-<p>Thank you for your interest, but unfortunately this page does nothing but mirror back your message:</p>
-<pre>{{message}}</pre>
-
-{{else}}
-
-<form method="post">
-    <fieldset><legend>Contact</legend>
+<div class="container-fluid">
+  <h1 class="col-lg-8 col-lg-offset-2 tc">Koa Test Middleware contact page</h1>
+  <div class="row col-lg-offset-2 col-lg-8">
+    {{#if email}}
+    <p>Dear {{email}},</p>
+    <p>Thank you for your interest, but unfortunately this page does nothing but mirror back your message:</p>
+    <pre>{{message}}</pre>
+    {{else}}
+    <form method="post">
+      <fieldset>
+        <legend>Contact</legend>
         <ul>
-            <li><label for="email">E-mail</label> <input type="email" name="email" id="email" required></li>
-            <li><label for="message">Message</label> <textarea name="message" id="message" required></textarea></li>
-            <li><label></label> <button type="submit">Send</button></li>
+          <li><label for="email">E-mail</label> <input type="email" name="email" id="email" required></li>
+          <li><label for="message">Message</label> <textarea name="message" id="message" required></textarea></li>
+          <li><label></label> <button type="submit">Send</button></li>
         </ul>
-    </fieldset>
-</form>
-
-{{/if}}
-
-</main>
+      </fieldset>
+    </form>
+    {{/if}}
+  </div>
+</div>
 
 </body>
 </html>

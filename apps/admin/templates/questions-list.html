@@ -9,29 +9,29 @@
 </head>
 <body>
 
-<h1>Questions</h1>
 
 {{>navpartial}}
 
-<main>
-
-<table>
-    <tr>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>Questions</h1>
+    <table>
+      <tr>
         <td></td>
         <td></td>
         <td></td>
         <td><a href="/questions/add" class="fa fa-plus small grey" title="add quesiton"></a>
-    </tr>
-    {{#questions}}
-    <tr id="{{id}}">
+      </tr>
+      {{#questions}}
+      <tr id="{{id}}">
         <td><a href="/questions/{{question_id}}">{{title}}</a></td>
         <td><a href="/questions/{{question_id}}/edit" class="fa fa-pencil small grey" title="edit quesiton"></a>
         <td><a href="/questions/{{question_id}}/delete" class="fa fa-trash-o small grey" title="delete quesiton"></a>
-    </tr>
-    {{/questions}}
-</table>
-
-</main>
+      </tr>
+      {{/questions}}
+    </table>
+  </div>
+</div>
 
 </body>
 </html>

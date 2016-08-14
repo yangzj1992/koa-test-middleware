@@ -6,23 +6,24 @@
 </head>
 <body>
 
-<h1>:(</h1>
+
 
 {{>navpartial}}
 
-<main>
+<div class="container-fluid">
+  <div class="row col-lg-8 col-lg-offset-2">
+    <h1>:(</h1>
+    {{#if msg}}
+    <p>{{msg}}.</p>
+    {{else}}
+    <p>Couldn’t find that one!...</p>
+    {{/if}}
 
-{{#if msg}}
-<p>{{msg}}.</p>
-{{else}}
-<p>Couldn’t find that one!...</p>
-{{/if}}
-
-{{#if e}}
-<pre class="small grey">{{e.stack}}.</pre>
-{{/if}}
-
-</main>
+    {{#if e}}
+    <pre class="small grey">{{e.stack}}.</pre>
+    {{/if}}
+  </div>
+</div>
 
 </body>
 </html>
