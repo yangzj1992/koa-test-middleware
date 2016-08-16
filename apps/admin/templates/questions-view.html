@@ -22,20 +22,20 @@
 
     <div class="row">
       <span class="des">Title</span>
-      <span>{{title}}</span>
+      <div class="bs-example" id="title">{{title}}</div>
     </div>
     <div class="row">
       <span class="des">Question Use Case</span>
-      <div>{{use_case}}</div>
+      <div class="bs-example" id="use_case">{{use_case}}</div>
     </div>
     <div class="row">
       <span class="des">Question Description</span>
-      <div>{{description}}</div>
+      <div class="bs-example" id="description">{{description}}</div>
     </div>
     <div class="row">
       {{#answers}}
       <span class="des">Answer</span>
-      <span id="answer">{{answer}}</span>
+      <div class="bs-example" id="answer">{{answer}}</div>
       {{/answers}}
     </div>
 
@@ -69,6 +69,12 @@
 <script type="text/javascript">
   if($('#answer').text()){
     $('#answer').html(marked($('#answer').text()));
+  }
+  if($('#use_case').text()){
+    $('#use_case').html(marked($('#use_case').text()));
+  }
+  if($('#description').text()){
+    $('#description').html(marked($('#description').text()));
   }
 </script>
 </body>
