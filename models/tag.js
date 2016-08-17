@@ -92,10 +92,8 @@ Tag.update = function*(id, values) {
  */
 Tag.delete = function*(id) {
     try {
-
+        yield GLOBAL.db.query('Delete From et_question_tag Where tag_id = ?', id);
         yield GLOBAL.db.query('Delete From et_tag Where tag_id = ?', id);
-        //console.log('Tag.delete', id, new Date); // eg audit trail?
-
     } catch (e) {
         switch (e.code) {
             case 'ER_ROW_IS_REFERENCED_': // trailing underscore?

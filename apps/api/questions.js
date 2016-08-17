@@ -36,14 +36,6 @@ handler.getQuestionById = function*() {
     const question = yield Question.get(this.params.id);
     if (!question) this.throw(404, `No question ${this.params.id} found`); 
     question._id = question.QuestionId;
-    const sql_tag = 'Select TagId As _id, concat("/tags/",TagId) As _uri From QuestionTag Where QuestionId = ?';
-    const tag_result = yield this.db.query(sql_tag, this.params.id);
-    const tags = tag_result[0];
-
-    const sql_type = 'Select TypeId As _id, concat("/types/",TypeId) As _uri From QuestionType Where QuestionId = ?';
-    const type_result = yield this.db.query(sql_type, this.params.id);
-    const types = type_result[0];
-    question.Types = types;
     this.body = question;
     this.body.root = 'Question';
 };

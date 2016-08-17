@@ -92,10 +92,8 @@ Type.update = function*(id, values) {
  */
 Type.delete = function*(id) {
     try {
-
+        yield GLOBAL.db.query('Delete From et_question_type Where type_id = ?', id);
         yield GLOBAL.db.query('Delete From et_type Where type_id = ?', id);
-        //console.log('Type.delete', id, new Date); // eg audit trail?
-
     } catch (e) {
         switch (e.code) {
             case 'ER_ROW_IS_REFERENCED_': // trailing underscore?

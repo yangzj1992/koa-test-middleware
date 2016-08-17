@@ -103,7 +103,9 @@ Question.update = function*(id, values) {
  */
 Question.delete = function*(id) {
     try {
-
+        yield GLOBAL.db.query('Delete From et_question_type Where question_id = ?', id);
+        yield GLOBAL.db.query('Delete From et_question_tag Where question_id = ?', id);
+        yield GLOBAL.db.query('Delete From et_answer Where question_id = ?', id);
         yield GLOBAL.db.query('Delete From et_question Where question_id = ?', id);
         //console.log('Question.delete', id, new Date); // eg audit trail?
 
