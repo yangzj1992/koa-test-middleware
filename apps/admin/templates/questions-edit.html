@@ -100,18 +100,24 @@
             {{/notquestionOfTags}}
           </select>
         </td>
-        <td><button type="button" class="add-tag fa fa-plus small grey" title="add tag"></butto</td>
-        </tr>
-        {{#questionOfTags}}
-        <tr id="{{question_tag_id}}">
-          <td>{{name}}</td>
-          <td><button type="button" data-tag="{{tag_id}}" value="{{question_tag_id}}" class="delete-tag fa fa-trash-o small grey" title="delete tag"></button></td>
-        </tr>
-        {{/questionOfTags}}
-        <tr class="hide tag_hide" id="-1">
-          <td>1</td>
-          <td><button type="button" data-tag="-1" value="-1" class="delete-tag fa fa-trash-o small grey" title="delete tag"></button></td>
-        </tr>
+        <td>
+          <button type="button" class="add-tag fa fa-plus small grey" title="add tag"></button>
+        </td>
+      </tr>
+      {{#questionOfTags}}
+      <tr id="{{question_tag_id}}">
+        <td>{{name}}</td>
+        <td>
+          <button type="button" data-tag="{{tag_id}}" value="{{question_tag_id}}" class="delete-tag fa fa-trash-o small grey" title="delete tag"></button>
+        </td>
+      </tr>
+      {{/questionOfTags}}
+      <tr class="hide tag_hide" id="-1">
+        <td>1</td>
+        <td>
+          <button type="button" data-tag="-1" value="-1" class="delete-tag fa fa-trash-o small grey" title="delete tag"></button>
+        </td>
+      </tr>
     </table>
   </div>
 </div>
@@ -226,7 +232,7 @@
       .done(function(result) {
           // add new row, remove from select
           var $thisRow = $(this).closest('tr');
-          var $newRow = $thisRow.next('.tag_hide').clone();
+          var $newRow = $thisRow.closest('tbody').find('.tag_hide').clone();
           $newRow.prop('id', result.question_tag_id);
           $newRow.find('td').eq(0).html($(this).find('option:selected').text());
           $newRow.find('button').prop('value', result.question_tag_id);
