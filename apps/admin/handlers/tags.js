@@ -89,7 +89,7 @@ tags.processEdit = function*() {
     if ('name' in this.request.body) {
         try {
             yield Tag.update(this.params.id, this.request.body);
-            this.redirect(this.url);
+            this.redirect('/tags');
         } catch (e) {
             this.flash = { formdata: this.request.body, _error: e.message };
             this.redirect(this.url);

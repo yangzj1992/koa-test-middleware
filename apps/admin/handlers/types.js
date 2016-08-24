@@ -90,7 +90,7 @@ types.processEdit = function*() {
     if ('topic' in this.request.body) {
         try {
             yield Type.update(this.params.id, this.request.body);
-            this.redirect(this.url);
+            this.redirect('/types');
         } catch (e) {
             this.flash = { formdata: this.request.body, _error: e.message };
             this.redirect(this.url);
