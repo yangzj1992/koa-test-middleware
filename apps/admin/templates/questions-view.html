@@ -72,9 +72,13 @@
   }
   if($('#use_case').text()){
     $('#use_case').html(marked($('#use_case').text()));
+  }else{
+    $('#use_case').hide()
   }
   if($('#description').text()){
     $('#description').html(marked($('#description').text()));
+  }else{
+    $('#description').hide()
   }
 </script>
 </body>

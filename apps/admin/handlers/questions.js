@@ -19,7 +19,7 @@ questions.list = function*() {
         const filter = Object.keys(this.query).map(function(q) { return q+' = :'+q; }).join(' and ');
         sql += ' Where '+filter;
     }
-    sql +=  ' Order By question_id';
+    sql +=  ' Order By title';
     try {
         const result = yield this.db.query({ sql: sql, namedPlaceholders: true }, this.query);
         const questions = result[0];
