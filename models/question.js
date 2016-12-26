@@ -36,7 +36,7 @@ Question.get = function*(id) {
  */
 Question.insert = function*(values) {
     // validation - somewhat artificial example serves to illustrate principle
-    if (values.title==null) {
+    if (values.title == null) {
         throw ModelError(403, 'title must be supplied');
     }
     try {

@@ -34,7 +34,7 @@ app.use(function* mysqlConnection(next) {
     yield next;
 
     this.db.release();
-    });
+});
 
 
 // use passport authentication (local auth)

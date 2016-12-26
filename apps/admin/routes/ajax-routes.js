@@ -49,7 +49,16 @@ router.all(/\/ajax\/(.*)/, function* getAjax() {
         // return api response (parsed json for 2xx, error message otherwise)
         this.status = response.statusCode;
         this.text = response.text;
-        this.body = /2../.test(this.status) ? JSON.parse(response.body) : response.body;
+        if(/2../.test(this.status)){
+            if(response.body.indexOf('xml') > -1){
+                this.body = response.body;
+            }else{
+                this.body = JSON.parse(response.body)
+            }
+        }else{
+            this.body = response.body;
+        }
+        // this.body = /2../.test(this.status) ? JSON.parse(response.body) : response.body;
 
     } catch (e) {
         this.status = 500;

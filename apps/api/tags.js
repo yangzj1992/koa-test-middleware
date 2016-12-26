@@ -11,12 +11,12 @@ const handler = module.exports = {};
 handler.getTags = function*() {
     try {
 
-        let sql = 'Select * From Tag';
+        let sql = 'Select * From et_tag';
         if (this.querystring) {
             const filter = Object.keys(this.query).map(function(q) { return q+' = :'+q; }).join(' and ');
             sql += ' Where '+filter;
         }
-        sql +=  ' Order By Name';
+        sql +=  ' Order By name';
 
         const result = yield this.db.query({ sql: sql, namedPlaceholders: true }, this.query);
         const tags = result[0];
@@ -24,7 +24,7 @@ handler.getTags = function*() {
         if (tags.length == 0) this.throw(204);
 
         for (let m=0; m<tags.length; m++) {
-            tags[m] = { _id: tags[m].TagId, _uri: '/tags/'+tags[m].TagId };
+            tags[m] = { _id: tags[m].tag_id, _uri: '/tags/'+tags[m].tag_id };
         }
 
         this.body = tags;
@@ -43,7 +43,7 @@ handler.getTagById = function*() {
 
     if (!tag) this.throw(404, `No tag ${this.params.id} found`);
 
-    tag._id = tag.TagId;
+    tag._id = tag.tag_id;
 
     this.body = tag;
     this.body.root = 'Tag';

@@ -4,6 +4,6 @@
         "port":     "3306",
         "database": "electron_test",
         "user":     "root",
-        "password": "root"
+        "password": "abcd"
     }
 }

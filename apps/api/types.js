@@ -10,17 +10,17 @@ const handler = module.exports = {};
 
 handler.getTypes = function*() {
     try {
-        let sql = 'Select * From Type';
+        let sql = 'Select * From et_type';
         if (this.querystring) {
             const filter = Object.keys(this.query).map(function(q) { return q+' = :'+q; }).join(' and ');
             sql += ' Where '+filter;
         }
-        sql +=  ' Order By Name';
+        sql +=  ' Order By topic';
         const result = yield this.db.query({ sql: sql, namedPlaceholders: true }, this.query);
         const types = result[0];
         if (types.length == 0) this.throw(204);
         for (let m=0; m<types.length; m++) {
-            types[m] = { _id: types[m].TypeId, _uri: '/types/'+types[m].TypeId };
+            types[m] = { _id: types[m].type_id, _uri: '/types/'+types[m].type_id };
         }
         this.body = types;
         this.body.root = 'Types';
@@ -36,7 +36,7 @@ handler.getTypes = function*() {
 handler.getTypeById = function*() {
     const type = yield Type.get(this.params.id);
     if (!type) this.throw(404, `No type ${this.params.id} found`);
-    type._id = type.TypeId;
+    type._id = type.type_id;
     this.body = type;
     this.body.root = 'Type';
 };

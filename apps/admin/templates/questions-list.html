@@ -23,7 +23,7 @@
         <td><a href="/questions/add" class="fa fa-plus small grey" title="add quesiton"></a>
       </tr>
       {{#questions}}
-      <tr id="{{id}}">
+      <tr id="question{{question_id}}">
         <td><a href="/questions/{{question_id}}">{{title}}</a></td>
         <td><a href="/questions/{{question_id}}/edit" class="fa fa-pencil small grey" title="edit quesiton"></a>
         <td><a href="/questions/{{question_id}}/delete" class="fa fa-trash-o small grey" title="delete quesiton"></a>

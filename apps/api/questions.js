@@ -10,17 +10,17 @@ const handler = module.exports = {};
 
 handler.getQuestions = function*() {
     try {
-        let sql = 'Select * From Question';
+        let sql = 'Select * From et_question';
         if (this.querystring) {
             const filter = Object.keys(this.query).map(function(q) { return q+' = :'+q; }).join(' and ');
             sql += ' Where '+filter;
         }
-        sql +=  ' Order By Name';
+        sql += ' Order By title';
         const result = yield this.db.query({ sql: sql, namedPlaceholders: true }, this.query);
         const questions = result[0];
         if (questions.length == 0) this.throw(204);
-        for (let m=0; m<questions.length; m++) {
-            questions[m] = { _id: questions[m].QuestionId, _uri: '/questions/'+questions[m].QuestionId };
+        for (let m = 0; m < questions.length; m++) {
+            questions[m] = { _id: questions[m].question_id, _uri: '/questions/'+questions[m].question_id };
         }
         this.body = questions;
         this.body.root = 'Questions';
@@ -35,7 +35,7 @@ handler.getQuestions = function*() {
 handler.getQuestionById = function*() {
     const question = yield Question.get(this.params.id);
     if (!question) this.throw(404, `No question ${this.params.id} found`); 
-    question._id = question.QuestionId;
+    question._id = question.question_id;
     this.body = question;
     this.body.root = 'Question';
 };
