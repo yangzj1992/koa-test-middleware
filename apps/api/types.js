@@ -12,15 +12,15 @@ handler.getTypes = function*() {
     try {
         let sql = 'Select * From et_type';
         if (this.querystring) {
-            const filter = Object.keys(this.query).map(function(q) { return q+' = :'+q; }).join(' and ');
-            sql += ' Where '+filter;
+            const filter = Object.keys(this.query).map(function(q) { return q + ' = :' + q; }).join(' and ');
+            sql += ' Where ' + filter;
         }
-        sql +=  ' Order By topic';
+        sql += ' Order By topic';
         const result = yield this.db.query({ sql: sql, namedPlaceholders: true }, this.query);
         const types = result[0];
         if (types.length == 0) this.throw(204);
-        for (let m=0; m<types.length; m++) {
-            types[m] = { _id: types[m].type_id, _uri: '/types/'+types[m].type_id };
+        for (let m = 0; m < types.length; m++) {
+            types[m] = { _id: types[m].type_id, _uri: '/types/' + types[m].type_id };
         }
         this.body = types;
         this.body.root = 'Types';
@@ -50,7 +50,7 @@ handler.postTypes = function*() {
         this.set('Location', '/types/'+id);
         this.status = 201;
     } catch (e) {
-        this.throw(e.status||500, e.message);
+        this.throw(e.status || 500, e.message);
     }
 };
 
@@ -62,7 +62,7 @@ handler.patchTypeById = function*() {
         if (!this.body) this.throw(404, `No type ${this.params.id} found`);
         this.body.root = 'Type';
     } catch (e) {
-        this.throw(e.status||500, e.message);
+        this.throw(e.status || 500, e.message);
     }
 };
 
@@ -75,7 +75,7 @@ handler.deleteTypeById = function*() {
         this.body = type;
         this.body.root = 'Type';
     } catch (e) {
-        this.throw(e.status||500, e.message);
+        this.throw(e.status || 500, e.message);
     }
 };
 

@@ -14,17 +14,17 @@ handler.getTags = function*() {
         let sql = 'Select * From et_tag';
         if (this.querystring) {
             const filter = Object.keys(this.query).map(function(q) { return q+' = :'+q; }).join(' and ');
-            sql += ' Where '+filter;
+            sql += ' Where ' + filter;
         }
-        sql +=  ' Order By name';
+        sql += ' Order By name';
 
         const result = yield this.db.query({ sql: sql, namedPlaceholders: true }, this.query);
         const tags = result[0];
 
         if (tags.length == 0) this.throw(204);
 
-        for (let m=0; m<tags.length; m++) {
-            tags[m] = { _id: tags[m].tag_id, _uri: '/tags/'+tags[m].tag_id };
+        for (let m = 0; m < tags.length; m++) {
+            tags[m] = { _id: tags[m].tag_id, _uri: '/tags/' + tags[m].tag_id };
         }
 
         this.body = tags;
@@ -58,7 +58,7 @@ handler.postTags = function*() {
         this.set('Location', '/tags/'+id);
         this.status = 201;
     } catch (e) {
-        this.throw(e.status||500, e.message);
+        this.throw(e.status || 500, e.message);
     }
 };
 
@@ -70,7 +70,7 @@ handler.patchTagById = function*() {
         if (!this.body) this.throw(404, `No tag ${this.params.id} found`);
         this.body.root = 'Tag';
     } catch (e) {
-        this.throw(e.status||500, e.message);
+        this.throw(e.status || 500, e.message);
     }
 };
 
@@ -83,7 +83,7 @@ handler.deleteTagById = function*() {
         this.body = tag;
         this.body.root = 'Tag';
     } catch (e) {
-        this.throw(e.status||500, e.message);
+        this.throw(e.status || 500, e.message);
     }
 };
 
