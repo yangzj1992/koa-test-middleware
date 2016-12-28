@@ -18,26 +18,8 @@
 <div class="container-fluid">
   <div class="row col-lg-8 col-lg-offset-2">
     <h1>{{title}}</h1>
-    <h2>Details</h2>
 
-    <div class="row">
-      <span class="des">Title</span>
-      <div class="bs-example" id="title">{{title}}</div>
-    </div>
-    <div class="row">
-      <span class="des">Question Use Case</span>
-      <div class="bs-example" id="use_case">{{use_case}}</div>
-    </div>
-    <div class="row">
-      <span class="des">Question Description</span>
-      <div class="bs-example" id="description">{{description}}</div>
-    </div>
-    <div class="row">
-      {{#answers}}
-      <span class="des">Answer</span>
-      <div class="bs-example" id="answer">{{answer}}</div>
-      {{/answers}}
-    </div>
+    <h2>Details</h2>
 
     {{#if tags}}
     <div class="row">
@@ -64,6 +46,27 @@
     {{else}}
     <p>No types.</p>
     {{/if}}
+    
+    <div class="row">
+      <span class="des">Title</span>
+      <div class="bs-example" id="title">{{title}}</div>
+    </div>
+    <div class="row">
+      <span class="des">Question Use Case</span>
+      <div class="bs-example" id="use_case">{{use_case}}</div>
+    </div>
+    <div class="row">
+      <span class="des">Question Description</span>
+      <div class="bs-example" id="description">{{description}}</div>
+    </div>
+    <div class="row">
+      {{#answers}}
+      <span class="des">Answer</span>
+      <div class="bs-example" id="answer">{{answer}}</div>
+      {{/answers}}
+    </div>
+
+    
   </div>
 </div>
 <script type="text/javascript">
