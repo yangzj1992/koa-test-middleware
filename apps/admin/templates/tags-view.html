@@ -18,6 +18,20 @@
             <td>{{name}}</td>
         </tr>
     </table>
+
+    {{#if questions}}
+    <div>
+      <h3 class="des">Questions:</h3>
+      <p>
+        {{#questions}}
+        <a href="/questions/{{question_id}}">{{title}}</a>
+        <br>
+        {{/questions}}
+      </p>
+    </div>
+    {{else}}
+    <p>No questions.</p>
+    {{/if}}
   </div>
 </div>
 

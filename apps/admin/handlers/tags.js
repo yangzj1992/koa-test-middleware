@@ -38,8 +38,13 @@ tags.view = function*() {
     const result = yield this.db.query(tag_sql, this.params.id);
     const tags = result[0];
 
+    const question_sql = `select * from et_question,et_question_tag where et_question.question_id = et_question_tag.question_id and tag_id = ?`
+    const question_result = yield this.db.query(question_sql, this.params.id);
+    const questions = question_result[0];
+
     const context = tag;
     context.tags = tags;
+    context.questions = questions;
     yield this.render('templates/tags-view', context);
 };
 
