@@ -10,7 +10,6 @@ const passport = require('koa-passport'); // authentication
 
 const handler = module.exports = {};
 
-
 /**
  * GET /login - render login page
  *
@@ -22,7 +21,6 @@ handler.getLogin = function*() {
     yield this.render('templates/login', context);
 };
 
-
 /**
  * GET /logout - logout user
  */
@@ -32,9 +30,7 @@ handler.getLogout = function*() {
     this.redirect('/');
 };
 
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
 
 /**
  * POST /login - process login
@@ -71,6 +67,5 @@ handler.postLogin = function* postLogin(next) {
         this.throw(e.status||500, e.message);
     }
 };
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */

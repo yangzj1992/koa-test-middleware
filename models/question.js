@@ -20,7 +20,7 @@ const Question = module.exports = {};
  * @returns {Object} Question details.
  */
 Question.get = function*(id) {
-    const result = yield GLOBAL.db.query('Select * From et_question Where question_id = ?', id);
+    const result = yield global.db.query('Select * From et_question Where question_id = ?', id);
     const questions = result[0];
     return questions[0];
 };
@@ -40,7 +40,7 @@ Question.insert = function*(values) {
         throw ModelError(403, 'title must be supplied');
     }
     try {
-        const result = yield GLOBAL.db.query('Insert Into et_question Set ?', values);
+        const result = yield global.db.query('Insert Into et_question Set ?', values);
         //console.log('Question.insert', result.insertId, new Date); // eg audit trail?
         return result[0].insertId;
     } catch (e) {
@@ -75,7 +75,7 @@ Question.update = function*(id, values) {
 
     try {
 
-        yield GLOBAL.db.query('Update et_question Set ? Where question_id = ?', [values, id]);
+        yield global.db.query('Update et_question Set ? Where question_id = ?', [values, id]);
         //console.log('Question.update', id, new Date); // eg audit trail?
 
     } catch (e) {
@@ -103,10 +103,10 @@ Question.update = function*(id, values) {
  */
 Question.delete = function*(id) {
     try {
-        yield GLOBAL.db.query('Delete From et_question_type Where question_id = ?', id);
-        yield GLOBAL.db.query('Delete From et_question_tag Where question_id = ?', id);
-        yield GLOBAL.db.query('Delete From et_answer Where question_id = ?', id);
-        yield GLOBAL.db.query('Delete From et_question Where question_id = ?', id);
+        yield global.db.query('Delete From et_question_type Where question_id = ?', id);
+        yield global.db.query('Delete From et_question_tag Where question_id = ?', id);
+        yield global.db.query('Delete From et_answer Where question_id = ?', id);
+        yield global.db.query('Delete From et_question Where question_id = ?', id);
         //console.log('Question.delete', id, new Date); // eg audit trail?
 
     } catch (e) {

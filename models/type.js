@@ -20,7 +20,7 @@ const Type = module.exports = {};
  * @returns {Object} Type details.
  */
 Type.get = function*(id) {
-    const result = yield GLOBAL.db.query('Select * From et_type Where type_id = ?', id);
+    const result = yield global.db.query('Select * From et_type Where type_id = ?', id);
     const type = result[0];
     return type[0];
 };
@@ -34,7 +34,7 @@ Type.get = function*(id) {
  */
 Type.insert = function*(values) {
     try {
-        const result = yield GLOBAL.db.query('Insert Into et_type Set ?', values);
+        const result = yield global.db.query('Insert Into et_type Set ?', values);
         //console.log('Type.insert', result.insertId, new Date); // eg audit trail?
         return result[0].insertId;
 
@@ -64,7 +64,7 @@ Type.insert = function*(values) {
  */
 Type.update = function*(id, values) {
     try {
-        yield GLOBAL.db.query('Update et_type Set ? Where type_id = ?', [values, id]);
+        yield global.db.query('Update et_type Set ? Where type_id = ?', [values, id]);
         //console.log('Type.update', id, new Date); // eg audit trail?
 
     } catch (e) {
@@ -92,8 +92,8 @@ Type.update = function*(id, values) {
  */
 Type.delete = function*(id) {
     try {
-        yield GLOBAL.db.query('Delete From et_question_type Where type_id = ?', id);
-        yield GLOBAL.db.query('Delete From et_type Where type_id = ?', id);
+        yield global.db.query('Delete From et_question_type Where type_id = ?', id);
+        yield global.db.query('Delete From et_type Where type_id = ?', id);
     } catch (e) {
         switch (e.code) {
             case 'ER_ROW_IS_REFERENCED_': // trailing underscore?

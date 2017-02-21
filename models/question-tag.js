@@ -13,14 +13,14 @@ const ModelError = require('./modelerror.js');
 const QuestionTag = module.exports = {};
 
 QuestionTag.get = function*(id) {
-    const result = yield GLOBAL.db.query('Select * From et_question_tag Where question_tag_id = ?', id);
+    const result = yield global.db.query('Select * From et_question_tag Where question_tag_id = ?', id);
     const QuestionTag = result[0];
     return QuestionTag[0];
 };
 
 QuestionTag.insert = function*(values) {
     try {
-        const result = yield GLOBAL.db.query('Insert Into et_question_tag Set ?', values);
+        const result = yield global.db.query('Insert Into et_question_tag Set ?', values);
         return result[0].insertId;
     } catch (e) {
         switch (e.code) {
@@ -39,7 +39,7 @@ QuestionTag.insert = function*(values) {
 
 QuestionTag.update = function*(id, values) {
     try {
-        const result = yield GLOBAL.db.query('Update et_question_tag Set ? Where question_tag_id = ?', [values, id]);
+        const result = yield global.db.query('Update et_question_tag Set ? Where question_tag_id = ?', [values, id]);
 
     } catch (e) {
         switch (e.code) {
@@ -57,7 +57,7 @@ QuestionTag.update = function*(id, values) {
 
 QuestionTag.delete = function*(id) {
     try {
-        yield GLOBAL.db.query('Delete From et_question_tag Where question_tag_id = ?', id);
+        yield global.db.query('Delete From et_question_tag Where question_tag_id = ?', id);
     } catch (e) {
         switch (e.code) {
             case 'ER_ROW_IS_REFERENCED_2':

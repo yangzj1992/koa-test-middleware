@@ -26,8 +26,8 @@ app.use(koaLogger(logger, {}));
 
 // set up MySQL connection
 app.use(function* mysqlConnection(next) {
-    // keep copy of this.db in GLOBAL for access from models
-    this.db = GLOBAL.db = yield GLOBAL.connectionPool.getConnection();
+    // keep copy of this.db in global for access from models
+    this.db = global.db = yield global.connectionPool.getConnection();
     // traditional mode ensures not null is respected for unsupplied fields, ensures valid JavaScript dates, etc
     yield this.db.query('SET SESSION sql_mode = "TRADITIONAL"');
 
@@ -46,9 +46,7 @@ app.use(passport.session());
 // handle thrown or uncaught exceptions anywhere down the line
 app.use(function* handleErrors(next) {
     try {
-
         yield next;
-
     } catch (e) {
         let context = null;
         this.status = e.status || 500;
@@ -109,7 +107,7 @@ app.use(function* ctxAddDomain(next) {
 // ------------ routing
 
 // serve static files (html, css, js); allow browser to cache for 1 hour (note css/js req'd before login)
-app.use(serve('source', { maxage: 1000*60*60 }));
+app.use(serve('source', { maxage: 1000 * 60 * 60 }));
 
 // public (unsecured) modules first
 
@@ -136,7 +134,7 @@ app.use(require('./routes/logs-routes.js'));
 
 
 // serve static apidoc files (http://admin.localhost/apidoc) (note login required)
-app.use(serve('apps/api/apidoc', { maxage: 1000*60*60 }));
+app.use(serve('apps/api/apidoc', { maxage: 1000 * 60 * 60 }));
 
 
 // end of the line: 404 status for any resource not found

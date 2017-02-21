@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+  <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<body>
+</body>
+<script>
+  $(function(){
+    $.ajax({
+      url: 'http://api.localhost:7010',
+      type: 'GET',
+      dataType: 'json',
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", "Basic " + btoa('admin@user.com:admin'))
+      },
+      success: function(data) {
+
+      }
+    });
+  })
+</script>
+</html>

@@ -9,9 +9,9 @@
 
 'use strict';
 
-const co            = require('co');           // generator async control flow goodness
-const passport      = require('koa-passport'); // authentication
-const bcrypt        = require('co-bcryptjs');    // bcrypt library
+const co            = require('co'); 
+const passport      = require('koa-passport');
+const bcrypt        = require('co-bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../../models/user.js');
@@ -52,32 +52,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
     }).then(function(result) { done(null, result); }, done);
 }));
 
-
-/* perhaps one day we'll have simpler usage something like:
-
-passport.serializeUser(function*(user) {
-    return user.id;
-});
-
-passport.deserializeUser(function*(id) {
-    return yield User.findById(id);
-});
-
-passport.use(new LocalStrategy(function*(username, password, done) {
-    const users = yield User.getBy('Email', username);
-    if (users.length == 0) return false; // user not found
-    const user = users[0];
-
-    // verify password matches
-    const match = yield bcrypt.compare(password, user.Password);
-    if (!match) return false; // no password match
-
-    // validated ok, return user details
-    return user;
-});
-*/
-
 // for other providers (facebook, twitter, google, etc) see passportjs.org/guide
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */

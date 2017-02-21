@@ -20,7 +20,7 @@ const QuestionAnswer = module.exports = {};
  * @returns {Object} QuestionAnswer details.
  */
 QuestionAnswer.get = function*(id) {
-    const result = yield GLOBAL.db.query('Select * From et_answer Where question_id = ?', id);
+    const result = yield global.db.query('Select * From et_answer Where question_id = ?', id);
     const answer = result[0];
     return answer[0];
 };
@@ -34,7 +34,7 @@ QuestionAnswer.get = function*(id) {
  */
 QuestionAnswer.insert = function*(values) {
     try {
-        const result = yield GLOBAL.db.query('Insert Into et_answer Set ?', values);
+        const result = yield global.db.query('Insert Into et_answer Set ?', values);
         //console.log('QuestionAnswer.insert', result.insertId, new Date); // eg audit trail?
         return result[0].insertId;
 
@@ -64,7 +64,7 @@ QuestionAnswer.insert = function*(values) {
  */
 QuestionAnswer.update = function*(id, values) {
     try {
-        yield GLOBAL.db.query('Update et_answer Set ? Where question_id = ?', [values, id]);
+        yield global.db.query('Update et_answer Set ? Where question_id = ?', [values, id]);
         //console.log('QuestionAnswer.update', id, new Date); // eg audit trail?
     } catch (e) {
         switch (e.code) {
@@ -92,7 +92,7 @@ QuestionAnswer.update = function*(id, values) {
 QuestionAnswer.delete = function*(id) {
     try {
 
-        yield GLOBAL.db.query('Delete From et_answer Where question_id = ?', id);
+        yield global.db.query('Delete From et_answer Where question_id = ?', id);
         //console.log('QuestionAnswer.delete', id, new Date); // eg audit trail?
 
     } catch (e) {

@@ -20,7 +20,7 @@ const Answer = module.exports = {};
  * @returns {Object} Answer details.
  */
 Answer.get = function*(id) {
-    const result = yield GLOBAL.db.query('Select * From et_answer Where answer_id = ?', id);
+    const result = yield global.db.query('Select * From et_answer Where answer_id = ?', id);
     const answer = result[0];
     return answer[0];
 };
@@ -34,7 +34,7 @@ Answer.get = function*(id) {
  */
 Answer.insert = function*(id,values) {
     try {
-        const result = yield GLOBAL.db.query('Insert Into et_answer Set ?', values);
+        const result = yield global.db.query('Insert Into et_answer Set ?', values);
         //console.log('Answer.insert', result.insertId, new Date); // eg audit trail?
         return result[0].insertId;
 
@@ -64,7 +64,7 @@ Answer.insert = function*(id,values) {
  */
 Answer.update = function*(id, values) {
     try {
-        yield GLOBAL.db.query('Update et_answer Set ? Where answer_id = ?', [values, id]);
+        yield global.db.query('Update et_answer Set ? Where answer_id = ?', [values, id]);
         //console.log('Answer.update', id, new Date); // eg audit trail?
 
     } catch (e) {
@@ -93,7 +93,7 @@ Answer.update = function*(id, values) {
 Answer.delete = function*(id) {
     try {
 
-        yield GLOBAL.db.query('Delete From et_answer Where answer_id = ?', id);
+        yield global.db.query('Delete From et_answer Where answer_id = ?', id);
         //console.log('Answer.delete', id, new Date); // eg audit trail?
 
     } catch (e) {

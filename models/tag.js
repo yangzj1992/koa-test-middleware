@@ -20,7 +20,7 @@ const Tag = module.exports = {};
  * @returns {Object} Tag details.
  */
 Tag.get = function*(id) {
-    const result = yield GLOBAL.db.query('Select * From et_tag Where tag_id = ?', id);
+    const result = yield global.db.query('Select * From et_tag Where tag_id = ?', id);
     const tag = result[0];
     return tag[0];
 };
@@ -34,7 +34,7 @@ Tag.get = function*(id) {
  */
 Tag.insert = function*(values) {
     try {
-        const result = yield GLOBAL.db.query('Insert Into et_tag Set ?', values);
+        const result = yield global.db.query('Insert Into et_tag Set ?', values);
         //console.log('Tag.insert', result.insertId, new Date); // eg audit trail?
         return result[0].insertId;
 
@@ -64,7 +64,7 @@ Tag.insert = function*(values) {
  */
 Tag.update = function*(id, values) {
     try {
-        yield GLOBAL.db.query('Update et_tag Set ? Where tag_id = ?', [values, id]);
+        yield global.db.query('Update et_tag Set ? Where tag_id = ?', [values, id]);
         //console.log('Tag.update', id, new Date); // eg audit trail?
 
     } catch (e) {
@@ -92,8 +92,8 @@ Tag.update = function*(id, values) {
  */
 Tag.delete = function*(id) {
     try {
-        yield GLOBAL.db.query('Delete From et_question_tag Where tag_id = ?', id);
-        yield GLOBAL.db.query('Delete From et_tag Where tag_id = ?', id);
+        yield global.db.query('Delete From et_question_tag Where tag_id = ?', id);
+        yield global.db.query('Delete From et_tag Where tag_id = ?', id);
     } catch (e) {
         switch (e.code) {
             case 'ER_ROW_IS_REFERENCED_': // trailing underscore?

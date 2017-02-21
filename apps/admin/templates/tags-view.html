@@ -17,11 +17,15 @@
             <th>Name:</th>
             <td>{{name}}</td>
         </tr>
+        <tr>
+            <th>Total:</th>
+            <td>{{questions.length}}</td>
+        </tr>
     </table>
 
     {{#if questions}}
     <div>
-      <h3 class="des">Questions:</h3>
+      <h3 class="des">Questions: </h3>
       <p>
         {{#questions}}
         <a href="/questions/{{question_id}}">{{title}}</a>

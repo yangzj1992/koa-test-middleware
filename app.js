@@ -8,7 +8,6 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 'use strict';
-/* eslint no-shadow:0 *//* app is already declared in the upper scope */
 
 const koa          = require('koa');               // Koa framework
 const body         = require('koa-body');          // body parser
@@ -21,7 +20,7 @@ const mysql        = require('mysql-co');          // MySQL (co wrapper for mysq
 const app = module.exports = koa();
 
 
-// return response time in X-Response-Time header
+// return Koa response time in X-Response-Time header
 app.use(responseTime());
 
 
@@ -39,8 +38,8 @@ app.use(session(app));
 
 
 // MySQL connection pool TODO: how to catch connection exception eg invalid password?
-const config = require('./config/db-'+app.env+'.json');
-GLOBAL.connectionPool = mysql.createPool(config.db); // put in GLOBAL to pass to sub-apps
+const config = require('./config/db-' + app.env + '.json');
+global.connectionPool = mysql.createPool(config.db); // put in global to pass to sub-apps
 
 
 // select sub-app (admin/api) according to host subdomain (could also be by analysing request.url);
@@ -58,19 +57,18 @@ app.use(function* subApp(next) {
         case 'www':
             yield compose(require('./apps/www/app-www.js').middleware);
             break;
-        default: // no (recognised) subdomain? canonicalise host to www.host
+        default: // no (recognised) subdomain? to www.host
             // note switch must include all registered subdomains to avoid potential redirect loop
-            this.redirect(this.protocol+'://'+'www.'+this.host+this.path+this.search);
+            this.redirect(this.protocol + '://' + 'www.' + this.host + this.path + this.search);
             break;
     }
 });
 
 
 if (!module.parent) {
-    /* eslint no-console: 0 */
     app.listen(process.env.PORT||7010);
-    const db = require('./config/db-'+app.env+'.json').db.database;
-    console.log(process.version+' listening on port '+(process.env.PORT||7010)+' ('+app.env+'/'+db+')');
+    const db = require('./config/db-' + app.env + '.json').db.database;
+    console.log(process.version + ' listening on port ' + (process.env.PORT || 7010) + ' (' + app.env + '/' + db + ')');
 }
 
 

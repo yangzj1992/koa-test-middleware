@@ -49,9 +49,7 @@ questions.view = function*() {
     const answer_result = yield this.db.query(answer_sql, this.params.id);
     const answers = answer_result[0];
 
-    const question_sql = `select * from et_question where question_id = ?`;
-    const question_result = yield this.db.query(question_sql, this.params.id);
-    const questions = question_result[0];
+    const questions = question;
 
     const context = question;
     context.tags = tags;
@@ -83,9 +81,7 @@ questions.edit = function*() {
     const answer_result = yield this.db.query(answer_sql, this.params.id);
     question.questionOfAnswer = answer_result[0];
 
-    const question_sql = `select * from et_question where question_id = ?`;
-    const question_result = yield this.db.query(question_sql, this.params.id);
-    question.question = question_result[0];
+    question.question = question
 
     let tags = question.questionOfTags.map(function(t) { return t.tag_id; });
     if (tags.length == 0) tags = [0];
